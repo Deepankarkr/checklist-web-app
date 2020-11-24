@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="content">
+    <h5>Task list</h5>
+    <table class="table">
+        <tr>
+        </tr>
+
+        {% for task in tasks %}
+            <tr>
+                <td>
+                    {% if task.completed=="[ PENDING ]" %}
+                        <h5 style="background-color:Orange;">{{task.completed}} > {{task.content}}</h5>
+                    {% else %}
+                        <h5 style="background-color:MediumSeaGreen;">{{task.completed}} > {{task.content}}</h5>
+                    {%endif%}
+                </td>
+                <td>
+                    <h5 style="background-color:Tomato;">{{task.date_modified}}</h5>
+                <td>
+                    <a href="/Done/{{task.id}}"><h5>Done</h5></a>
+                <td>
+                    <a href="/Pending/{{task.id}}"><h5>Pending</h5></a>
+                <td>
+                    <a href="/delete/{{task.id}}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+    <div class="form-group">
+        <form action="/" method="POST">
+        <input class="form-control" type="text" id="contents" placeholder="Enter the task to add and Submit"  name="contents">
+            <br><br>
+        <button type="submit" class="btn btn-primary"> Submit </button>
+        </form>
+    </div>
+    </div>
+
+{% endblock %}
